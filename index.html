@@ -6,6 +6,12 @@
   <title>Bonfire — Nonprofit Digital Transformation</title>
   <meta name="description" content="25 years of helping nonprofit organizations do more with their CRM and MarTech investments." />
 
+  <!-- Favicon: put favicon.png or favicon.ico in the repo root -->
+  <link rel="icon" href="favicon.png" type="image/png" />
+  <!-- If you also have an .ico, you can add:
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  -->
+
   <style>
     :root {
       color-scheme: dark;
@@ -32,16 +38,15 @@
       justify-content: center;
       text-align: center;
       padding: 2rem;
-      /* campfire background */
-      background: url("BF-Home.jpg") center center / cover no-repeat fixed;
+      background: url("campfire.jpg") center center / cover no-repeat fixed;
     }
 
-    /* darken image slightly for legibility */
+    /* LIGHTER overlay over the image */
     .hero::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.45);
+      background: rgba(0, 0, 0, 0.2); /* was ~0.45; this keeps it brighter */
       z-index: 0;
     }
 
@@ -50,8 +55,10 @@
       z-index: 1;
       padding: 2.5rem 3rem;
       max-width: 420px;
-      background: rgba(0, 0, 0, 0.45);
-      border-radius: 4px;
+
+      /* black box REMOVED */
+      background: none;
+      border-radius: 0;
     }
 
     .logo {
@@ -64,11 +71,13 @@
     h1 {
       font-size: 2rem;
       margin-bottom: 1rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
     }
 
     p {
       font-size: 0.95rem;
       line-height: 1.6;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
     }
 
     @media (max-width: 600px) {
@@ -89,7 +98,6 @@
 <body>
   <section class="hero">
     <div class="hero-panel">
-      <!-- Put your bonfire logo here -->
       <img src="logo.png" alt="Bonfire" class="logo" />
 
       <h1>Nonprofit Digital Transformation</h1>
