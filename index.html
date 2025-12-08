@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bonfire — Nonprofit Digital Transformation</title>
+  <meta name="description" content="25 years of helping nonprofit organizations do more with their CRM and MarTech investments." />
+
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      /* campfire background */
+      background: url("BF-Home.jpg") center center / cover no-repeat fixed;
+    }
+
+    /* darken image slightly for legibility */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 0;
+    }
+
+    .hero-panel {
+      position: relative;
+      z-index: 1;
+      padding: 2.5rem 3rem;
+      max-width: 420px;
+      background: rgba(0, 0, 0, 0.45);
+      border-radius: 4px;
+    }
+
+    .logo {
+      max-width: 260px;
+      height: auto;
+      margin: 0 auto 1.75rem;
+      display: block;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding: 1.5rem;
+      }
+
+      .hero-panel {
+        padding: 2rem 1.75rem;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="hero-panel">
+      <!-- Put your bonfire logo here -->
+      <img src="logo.png" alt="Bonfire" class="logo" />
+
+      <h1>Nonprofit Digital Transformation</h1>
+      <p>
+        25 years of helping nonprofit organizations do more with their
+        CRM and MarTech investments.
+      </p>
+    </div>
+  </section>
+</body>
+</html>
