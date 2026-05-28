@@ -1,0 +1,18 @@
+{
+  "title": "Bonfire Website",
+  "description": "Static site at buildabonfire.com with a contact form backed by a Vercel serverless function (Turnstile captcha + Slack incoming webhook delivery).",
+  "group": "Bonfire",
+  "stage": "building",
+  "ports": { "frontend": 5190 },
+  "repository": "https://github.com/liesto/bonfire-site",
+  "tags": ["web", "static", "vercel", "turnstile", "slack"],
+  "completed": [
+    "Design spec: docs/superpowers/specs/2026-05-28-contact-page-design.md",
+    "Implementation plan: docs/superpowers/plans/2026-05-28-contact-page.md"
+  ],
+  "next": [
+    "Execute implementation plan: docs/superpowers/plans/2026-05-28-contact-page.md",
+    "After cutover: add interactive AI projects portfolio page (portfolio.html)"
+  ],
+  "updatedAt": "2026-05-28"
+}
