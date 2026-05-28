@@ -8,11 +8,13 @@
   "tags": ["web", "static", "vercel", "turnstile", "slack"],
   "completed": [
     "Design spec: docs/superpowers/specs/2026-05-28-contact-page-design.md",
-    "Implementation plan: docs/superpowers/plans/2026-05-28-contact-page.md"
+    "Implementation plan: docs/superpowers/plans/2026-05-28-contact-page.md",
+    "Tasks 2-12 implemented on branch feat/contact-page (29/29 tests passing, branch pushed)"
   ],
   "next": [
-    "Execute implementation plan: docs/superpowers/plans/2026-05-28-contact-page.md",
-    "After cutover: add interactive AI projects portfolio page (portfolio.html)"
+    "Task 13: First deploy — set Vercel env vars, replace Turnstile site-key sentinel, deploy preview, smoke test, deploy prod",
+    "Task 14: DNS cutover from GitHub Pages to Vercel, then merge feat/contact-page to main locally",
+    "Future: add interactive AI projects portfolio page (portfolio.html)"
   ],
   "updatedAt": "2026-05-28"
 }
