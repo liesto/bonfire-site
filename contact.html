@@ -250,5 +250,105 @@
       </form>
     </div>
   </main>
+
+  <script>
+    (function () {
+      const form = document.getElementById("contact-form");
+      const submitBtn = document.getElementById("submit-btn");
+      const statusEl = document.getElementById("status");
+      const messageEl = document.getElementById("message");
+      const counterEl = document.getElementById("char-count");
+      const formRegion = document.getElementById("form-region");
+
+      const MAX_MESSAGE = 2000;
+
+      function updateCounter() {
+        const len = messageEl.value.length;
+        counterEl.textContent = `${len} / ${MAX_MESSAGE}`;
+        counterEl.classList.toggle("over", len > MAX_MESSAGE);
+      }
+      messageEl.addEventListener("input", updateCounter);
+      updateCounter();
+
+      function setStatus(msg, type) {
+        statusEl.textContent = msg;
+        statusEl.classList.remove("error");
+        if (type === "error") statusEl.classList.add("error");
+      }
+
+      function showSuccess() {
+        formRegion.innerHTML = `
+          <div class="success" role="status">
+            <h2>Thanks — your message is on its way.</h2>
+            <p>James will get back to you soon.</p>
+            <a href="/">Back to home</a>
+          </div>
+        `;
+      }
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        setStatus("", null);
+
+        const turnstileInput = form.querySelector('[name="cf-turnstile-response"]');
+        const turnstileToken = turnstileInput ? turnstileInput.value : "";
+
+        const body = {
+          name: form.name.value.trim(),
+          email: form.email.value.trim(),
+          message: form.message.value.trim(),
+          turnstileToken,
+          hp_url: form.hp_url.value
+        };
+
+        // Client-side guardrails — server still validates everything.
+        if (!body.name || !body.email || !body.message) {
+          setStatus("Please fill in your name, email, and message.", "error");
+          return;
+        }
+        if (!turnstileToken) {
+          setStatus("Please complete the captcha.", "error");
+          return;
+        }
+        if (body.message.length > MAX_MESSAGE) {
+          setStatus(`Message is too long (${body.message.length} / ${MAX_MESSAGE}).`, "error");
+          return;
+        }
+
+        submitBtn.disabled = true;
+        const originalLabel = submitBtn.textContent;
+        submitBtn.textContent = "Sending…";
+
+        try {
+          const res = await fetch("/api/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body)
+          });
+
+          if (res.ok) {
+            showSuccess();
+            return;
+          }
+
+          let errMsg = "Something went wrong. Please try again.";
+          try {
+            const data = await res.json();
+            if (data && data.error) errMsg = data.error;
+          } catch { /* response had no JSON body */ }
+
+          setStatus(errMsg, "error");
+          if (window.turnstile && typeof window.turnstile.reset === "function") {
+            window.turnstile.reset();
+          }
+        } catch {
+          setStatus("Network error. Please try again.", "error");
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalLabel;
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
